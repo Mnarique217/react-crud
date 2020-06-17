@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react";
 import PersonaDataService from "../services/PersonaService";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 const PersonaList = () => {
     const [personas, setPersonas] = useState([]);
     const [currentPersona, setCurrentPersona] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
+
+    const deletePersona = () => {
+        PersonaDataService.remove(currentPersona.id).then(response => {
+            PersonaDataService.getAll()
+                .then(response => {
+                    setPersonas(response.data);
+                    console.log(response.data);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }).catch(e => {
+            console.log(e);
+        });
+    }
+
 
     const retrivePersonas = () => {
         PersonaDataService.getAll()
@@ -68,12 +84,18 @@ const PersonaList = () => {
                             {currentPersona.fecha}
                         </div>
 
-                        <Link
-                            to={"/personas/" + currentPersona.id}
-                            className="badge badge-warning"
-                        >
-                            Edit
+
+                        <button className="badge badge-warning">
+                            <Link
+                                to={"/personas/" + currentPersona.id}
+                                className="badge badge-warning"
+                            >
+                                Edit
                         </Link>
+                        </button>
+                        <button className="m-1 badge badge-danger mr-2 button-sm" onClick={deletePersona}>
+                            Delete
+                       </button>
                     </div>
                 ) : (
                         <div>

@@ -10,13 +10,33 @@ import AddPersona from './components/AddPersona';
 function App() {
     return (
         <Router>
+            <div>
+                <nav className="navbar navbar-expand navbar-dark bg-dark">
+                    <a href="/personas" className="navbar-brand">
+                        UNA
+    </a>
+                    <div className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <Link to={"/personas"} className="nav-link">
+                                Lista de personas
+                                </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={"/add"} className="nav-link">
+                                Incluir personas
+                            </Link>
+                        </li>
+                    </div>
+                </nav>
 
-            <Switch>
-                <Route exact path={["/", "/personas"]} component={PersonaList} />
-                <Route exact path="/persona/add" component={Persona} />
-                <Route exact path="/personas/:id" component={Persona} />
-
-            </Switch>
+                <div className="container mt-3">
+                    <Switch>
+                        <Route exact path={["/", "/personas"]} component={PersonaList} />
+                        <Route exact path="/add" component={AddPersona} />
+                        <Route path="/personas/:id" component={Persona} />
+                    </Switch>
+                </div>
+            </div>
         </Router>
     );
 }
