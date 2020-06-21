@@ -24,11 +24,35 @@ const Persona = props => {
     }
 
     const updatePersona = () => {
-        PersonaDataService.update(currentPersona).then(response => {
-            setMessage("Persona actualizda correctamente");
-        }).catch(e => {
-            console.log(e);
-        });
+
+        let ok = true;
+        let text = '';
+
+
+        if (currentPersona.nombre.length == 0) {
+            ok = false;
+            text += text = 'Nombre,';
+        }
+        if (currentPersona.identificacion.length == 0) {
+            ok = false;
+            text += text = 'identificacion,';
+        }
+        if (currentPersona.fecha.length == 0) {
+            ok = false;
+            text += text = 'fecha ';
+        }
+        let msg = `Los siguientes campos son requeridos y "${text}" no pueden estar vacios`;
+        if (ok) {
+            PersonaDataService.update(currentPersona).then(response => {
+                setMessage("Persona actualizda correctamente");
+            }).catch(e => {
+                console.log(e);
+            });
+
+        } else {
+            setMessage(msg);
+        }
+
     }
 
     const deletePersona = () => {
@@ -43,6 +67,7 @@ const Persona = props => {
 
     const handleInputChange = event => {
         const { name, value } = event.target;
+        console.log(event.target);
         setCurrentPersona({ ...currentPersona, [name]: value })
 
     }

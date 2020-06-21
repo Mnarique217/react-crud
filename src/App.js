@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import './App.css';
 import PersonaList from './components/PersonaList';
 import Persona from './components/Persona';
+import TelefonoList from './components/TelefonoList';
+import Telefono from './components/Telefono';
+import AddTelefono from './components/AddTelefono';
 import AddPersona from './components/AddPersona';
 
 function App() {
@@ -32,8 +35,12 @@ function App() {
                 <div className="container mt-3">
                     <Switch>
                         <Route exact path={["/", "/personas"]} component={PersonaList} />
-                        <Route exact path="/add" component={AddPersona} />
-                        <Route path="/personas/:id" component={Persona} />
+                        <Route exact path="/add" component={AddPersona} />                        
+                        <Route path="/personas/:id" component={Persona} />  
+                        <Route path="/telefonos/:id" component={Telefono} />                      
+                        <Route path="/telefonosList/:id" component={TelefonoList} />
+                        <Route exact path="/addTelefono/:id" component={AddTelefono} />
+                        
                     </Switch>
                 </div>
             </div>

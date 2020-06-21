@@ -5,19 +5,21 @@ const PersonaList = () => {
     const [personas, setPersonas] = useState([]);
     const [currentPersona, setCurrentPersona] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
+    const [message, setMessage] = useState("");
 
     const deletePersona = () => {
         PersonaDataService.remove(currentPersona.id).then(response => {
             PersonaDataService.getAll()
                 .then(response => {
+                    setMessage("");
                     setPersonas(response.data);
                     console.log(response.data);
                 })
                 .catch(e => {
-                    console.log(e);
+                    
                 })
         }).catch(e => {
-            console.log(e);
+            setMessage("Debe eliminar los numeros telefonicos o las direcciones primero");
         });
     }
 
@@ -25,6 +27,7 @@ const PersonaList = () => {
     const retrivePersonas = () => {
         PersonaDataService.getAll()
             .then(response => {
+                setMessage("");
                 setPersonas(response.data);
                 console.log(response.data);
             })
@@ -41,6 +44,9 @@ const PersonaList = () => {
     return (
         <div className="list row">
 
+            <div className="col-md-12">
+                <p className="text-danger">{message}</p>
+            </div>
             <div className="col-md-6">
                 <h4>Lista de Personas</h4>
 
@@ -84,15 +90,19 @@ const PersonaList = () => {
                             {currentPersona.fecha}
                         </div>
 
-
-                        <button className="badge badge-warning">
-                            <Link
-                                to={"/personas/" + currentPersona.id}
-                                className="badge badge-warning"
-                            >
-                                Edit
+                        <Link
+                            to={"/telefonosList/" + currentPersona.id}
+                            className="badge badge-info"
+                        >
+                            Telefonos
                         </Link>
-                        </button>
+
+                        <Link
+                            to={"/personas/" + currentPersona.id}
+                            className="badge badge-warning"
+                        >
+                            Edit
+                        </Link>
                         <button className="m-1 badge badge-danger mr-2 button-sm" onClick={deletePersona}>
                             Delete
                        </button>

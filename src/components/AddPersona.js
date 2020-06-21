@@ -55,6 +55,7 @@ const AddPersona = () => {
             text+=text='fecha ';
         }
         let msg = `Los siguientes campos son requeridos y "${text}" no pueden estar vacios`;
+        
         if (ok) {
 
             PersonaDataService.create(persona)
