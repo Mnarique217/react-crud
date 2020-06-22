@@ -9,6 +9,9 @@ import TelefonoList from './components/TelefonoList';
 import Telefono from './components/Telefono';
 import AddTelefono from './components/AddTelefono';
 import AddPersona from './components/AddPersona';
+import DireccionList from './components/DireccionList';
+import AddDireccion from './components/AddDireccion';
+import Direccion from './components/Direccion';
 
 function App() {
     return (
@@ -40,6 +43,9 @@ function App() {
                         <Route path="/telefonos/:id" component={Telefono} />                      
                         <Route path="/telefonosList/:id" component={TelefonoList} />
                         <Route exact path="/addTelefono/:id" component={AddTelefono} />
+                        <Route exact path="/direcciones/:id" component={DireccionList} />                        
+                        <Route exact path="/addDireccion/:id" component={AddDireccion} />
+                        <Route exact path="/direccion/:id" component={Direccion} />
                         
                     </Switch>
                 </div>

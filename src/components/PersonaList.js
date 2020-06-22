@@ -89,7 +89,12 @@ const PersonaList = () => {
                             </label>{" "}
                             {currentPersona.fecha}
                         </div>
-
+                        <Link
+                            to={"/direcciones/" + currentPersona.id}
+                            className="badge badge-info"
+                        >
+                            Direcciones
+                        </Link>
                         <Link
                             to={"/telefonosList/" + currentPersona.id}
                             className="badge badge-info"

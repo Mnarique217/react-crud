@@ -33,7 +33,7 @@ const AddTelefono = props => {
             ok = false;
         }
         let msg = `El numero debe tener almenos 8 digitos`;
-
+        console.log(Telefono);
         if (ok) {
 
             TelefonoDataService.create(Telefono)
